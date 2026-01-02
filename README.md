@@ -35,3 +35,11 @@ app/
 
 ## Developer
 Ridho Rizqullah - QuestFirebase_131
+
+## Changelog
+- **v1.0.0**: Rilis awal dengan fitur manajemen data siswa lengkap.
+  - Implementasi MVVM Architecture
+  - Integrasi Firebase Firestore
+  - UI menggunakan Jetpack Compose
+  - Dokumentasi lengkap (README, STRUCTURE, TESTING)
+
