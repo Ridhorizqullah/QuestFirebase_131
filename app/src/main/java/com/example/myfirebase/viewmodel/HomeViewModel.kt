@@ -33,12 +33,16 @@ class HomeViewModel(private val repositorySiswa: RepositorySiswa) : ViewModel() 
     fun loadSiswa() {
         viewModelScope.launch {
             statusUiSiswa = StatusUiSiswa.Loading
-            statusUiSiswa = try {
-                StatusUiSiswa.Success(repositorySiswa.getDataSiswa())
+            try {
+                val data = repositorySiswa.getDataSiswa()
+                android.util.Log.d("HomeViewModel", "Data loaded: ${data.size} items")
+                statusUiSiswa = StatusUiSiswa.Success(data)
             } catch (e: IOException) {
-                StatusUiSiswa.Error
+                android.util.Log.e("HomeViewModel", "Network error", e)
+                statusUiSiswa = StatusUiSiswa.Error
             } catch (e: Exception) {
-                StatusUiSiswa.Error
+                android.util.Log.e("HomeViewModel", "Unknown error", e)
+                statusUiSiswa = StatusUiSiswa.Error
             }
         }
     }
