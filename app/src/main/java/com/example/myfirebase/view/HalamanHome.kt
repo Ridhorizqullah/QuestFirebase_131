@@ -35,20 +35,12 @@ import com.example.myfirebase.viewmodel.HomeViewModel
 import com.example.myfirebase.viewmodel.StatusUiSiswa
 import com.example.myfirebase.viewmodel.PenyediaViewModel
 
-/**
- * Halaman utama yang menampilkan daftar siswa.
- *
- * @param navigateToItemEntry Callback untuk navigasi ke halaman tambah data
- * @param modifier Modifier untuk tampilan
- * @param onDetailClick Callback saat item siswa diklik
- * @param viewModel ViewModel untuk mengelola data siswa
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
-    onDetailClick: (Long) -> Unit = {},
+    navigateToItemUpdate: (Long) -> Unit = {},
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -79,7 +71,7 @@ fun HomeScreen(
             statusUiSiswa = viewModel.statusUiSiswa,
             retryAction = { viewModel.loadSiswa() },
             modifier = Modifier.padding(innerPadding),
-            onDetailClick = onDetailClick
+            onDetailClick = navigateToItemUpdate
         )
     }
 }
